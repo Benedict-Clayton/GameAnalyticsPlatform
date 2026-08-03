@@ -1,0 +1,88 @@
+# This .gitignore file should be placed at the root of your
+# Game Analytics Platform repository.
+#
+# It contains rules for:
+# - Visual Studio
+# - ASP.NET Core / .NET
+# - React / Node.js
+# - Local secrets
+#
+# Place this file beside your solution file and README.md.
+
+# Visual Studio cache directory
+.vs/
+
+# Visual Studio user-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+
+# .NET build output
+[Bb]in/
+[Oo]bj/
+
+# NuGet packages
+*.nupkg
+*.snupkg
+packages/
+
+# Test results
+[Tt]est[Rr]esult*/
+*.trx
+
+# Logs
+*.log
+
+
+# ASP.NET Core local secrets
+#
+# Do not commit passwords, API keys, connection strings,
+# or other private configuration.
+.env
+.env.*
+!.env.example
+
+# Local secret configuration
+secrets.json
+secrets.Development.json
+
+
+# React / Node.js dependencies
+node_modules/
+
+# React build output
+dist/
+build/
+
+# Node package manager logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Node cache files
+.npm/
+.cache/
+.parcel-cache/
+
+
+# Operating system generated files
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+
+# IDE files
+
+# Visual Studio Code
+.vscode/
+
+# JetBrains Rider
+.idea/
+*.sln.iml
