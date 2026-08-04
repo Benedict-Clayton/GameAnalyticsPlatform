@@ -1,6 +1,15 @@
-﻿namespace GameAnalyticsAPI.Data
+﻿using GameAnalyticsAPI.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+
+namespace GameAnalyticsAPI.Data;
+
+public class GameAnalyticsContext : DbContext
 {
-    public class Class
+    public GameAnalyticsContext(DbContextOptions<GameAnalyticsContext> options)
+        : base(options)
     {
     }
+
+    public DbSet<GameEvent> GameEvents { get; set; }
 }
