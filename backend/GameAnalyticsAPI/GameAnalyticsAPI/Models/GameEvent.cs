@@ -1,6 +1,6 @@
 ﻿namespace GameAnalyticsAPI.Models;
 
-public class GameEvent
+public class GameEvent // This defines the data. In Unity terms, this is basically a Scriptable Object.
 {
     public int Id { get; set; }
 
