@@ -1,4 +1,5 @@
 ﻿using GameAnalyticsAPI.Models;
+using GameAnalyticsAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GameAnalyticsAPI.Controllers;
@@ -18,21 +19,23 @@ namespace GameAnalyticsAPI.Controllers;
 [Route("api/[controller]")]
 public class GameEventsController : ControllerBase
 {
-    private static readonly List<GameEvent> Events = new();
+    private readonly GameEventService gameEventService;
+
+    public GameEventsController(GameEventService gameEventService)
+    {
+        this.gameEventService = gameEventService;
+    }
 
     [HttpGet] // "When someone wants the events, run this method."
     public ActionResult<List<GameEvent>> GetEvents() 
     {
-        return Ok(Events);
+        return Ok(gameEventService.GetEvents());
     }
 
-    [HttpPost] // "Someone wants to give new information. Basically like creating a new event."
+    [HttpPost] // "Someone wants to give new information. Basically like a new thing to record."
     public ActionResult<GameEvent> CreateEvent(GameEvent gameEvent)
     {
-        gameEvent.Id = Events.Count + 1;
-        gameEvent.Timestamp = DateTime.UtcNow;
-
-        Events.Add(gameEvent);
+        gameEventService.CreateEvent(gameEvent);
 
         return CreatedAtAction(
             nameof(GetEvents),
