@@ -4,9 +4,6 @@
 
     Purpose:
     Creates the table used to store gameplay events received from Unity.
-    
-    Author:
-    Benedict
 */
 
 -- Select the database we want to use
