@@ -17,7 +17,7 @@ builder.Services.AddDbContext<GameAnalyticsContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 
 // When someone asks for GameEventService, create one.
-builder.Services.AddSingleton<GameEventService>();
+builder.Services.AddScoped<GameEventService>();
 
 builder.Services.AddSwaggerGen();
 
