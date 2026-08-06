@@ -27,15 +27,15 @@ public class GameEventsController : ControllerBase
     }
 
     [HttpGet] // "When someone wants the events, run this method."
-    public ActionResult<List<GameEvent>> GetEvents() 
+    public async Task<ActionResult<List<GameEvent>>> GetEvents()
     {
-        return Ok(gameEventService.GetEvents());
+        return Ok(await gameEventService.GetEvents());
     }
 
     [HttpPost] // "Someone wants to give new information. Basically like a new thing to record."
-    public ActionResult<GameEvent> CreateEvent(GameEvent gameEvent)
+    public async Task<ActionResult<GameEvent>> CreateEvent(GameEvent gameEvent)
     {
-        gameEventService.CreateEvent(gameEvent);
+        await gameEventService.CreateEvent(gameEvent);
 
         return CreatedAtAction(
             nameof(GetEvents),

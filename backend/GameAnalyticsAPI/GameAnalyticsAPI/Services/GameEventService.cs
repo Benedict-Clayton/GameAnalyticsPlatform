@@ -1,23 +1,37 @@
-﻿using GameAnalyticsAPI.Models;
+﻿using GameAnalyticsAPI.Data;
+using GameAnalyticsAPI.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace GameAnalyticsAPI.Services;
 
 public class GameEventService // Basically a script that handles the creation and getting of events.
 {
-    private readonly List<GameEvent> events = new();
+    private readonly GameAnalyticsContext context;
 
-    public List<GameEvent> GetEvents()
+    // ASP.NET gives this service the database connection.
+    public GameEventService(GameAnalyticsContext context)
     {
-        return events;
+        this.context = context;
     }
 
-    public GameEvent CreateEvent(GameEvent gameEvent)
+    // Gets all events from SQL Server.
+    public async Task<List<GameEvent>> GetEvents()
+    {
+        return await context.GameEvents.ToListAsync();
+    }
+
+    // Creates a new event and saves it to SQL Server.
+    public async Task<GameEvent> CreateEvent(GameEvent gameEvent)
     {
         Console.WriteLine("Service received event!"); // Yay! A debug log! The savior of developers everywhere :)
 
-        gameEvent.Id = events.Count + 1;
         gameEvent.Timestamp = DateTime.UtcNow;
 
-        events.Add(gameEvent);
+        // Adds the event to EF Core tracking.
+        context.GameEvents.Add(gameEvent);
+
+        // Actually sends INSERT command to SQL Server!
+        await context.SaveChangesAsync();
 
         return gameEvent;
     }

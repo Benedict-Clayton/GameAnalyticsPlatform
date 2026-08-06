@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace GameAnalyticsAPI.Data;
 
+// Acts as the bridge between C# models and the database.
 public class GameAnalyticsContext : DbContext
 {
     public GameAnalyticsContext(DbContextOptions<GameAnalyticsContext> options)
@@ -11,5 +12,5 @@ public class GameAnalyticsContext : DbContext
     {
     }
 
-    public DbSet<GameEvent> GameEvents { get; set; }
+    public DbSet<GameEvent> GameEvents { get; set; } = null!; // Represents the GameEvents table in the database.
 }
